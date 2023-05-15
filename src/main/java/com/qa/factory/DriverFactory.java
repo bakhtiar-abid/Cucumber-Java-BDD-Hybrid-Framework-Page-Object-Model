@@ -12,7 +12,13 @@ public class DriverFactory {
 
     public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-    public void init_driver(String browser){
+
+    /**
+     * This method is used to initialize the threadlocal driver on the basis of given browser
+     * @param browser
+     * @return
+     */
+    public WebDriver init_driver(String browser){
         System.out.println("browser value is: "+ browser);
 
         if(browser.equals("chrome")){
@@ -24,7 +30,21 @@ public class DriverFactory {
         } else if (browser.equals("edge")) {
             WebDriverManager.edgedriver().setup();
             tlDriver.set(new EdgeDriver());
+        }else {
+            System.out.println("Please pass the correct browser value");
         }
+
+        getDriver().manage().deleteAllCookies();
+        getDriver().manage().window().maximize();
+        return getDriver();
+    }
+
+    /**
+     * This is used to get the driver with ThreadLocal
+     * @return
+     */
+    public static synchronized WebDriver getDriver(){
+      return tlDriver.get();
     }
 
 }
