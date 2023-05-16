@@ -15,4 +15,4 @@ Feature: Login page feature
     And user enters password "User@123"
     And user clicks on Login button
     When user gets the title of the page
-    And page title should be "My Account"
+    Then page title should be "My Account"
