@@ -3,7 +3,7 @@ Feature: Login page feature
   Scenario: Login page title
     Given user is on login page
     When user gets the title of the page
-    Then page title should be "Customer Login"
+    Then page title should be "Your store. Login"
 
   Scenario: Forgot Password link
     Given user is on login page
@@ -12,7 +12,8 @@ Feature: Login page feature
   Scenario: Login with correct credentials
     Given user is on login page
     When user enters username "latexaid@gmail.com"
-    And user enters password "User@123"
+    And user enters password "123456"
     And user clicks on Login button
+    And user click on my account page
     When user gets the title of the page
-    Then page title should be "My Account"
+    Then page title should be "Your store. Account"

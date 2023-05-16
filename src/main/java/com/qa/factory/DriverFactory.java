@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+
 public class DriverFactory {
 
     public WebDriver driver;
@@ -24,6 +25,7 @@ public class DriverFactory {
         if(browser.equals("chrome")){
             WebDriverManager.chromedriver().setup();
             tlDriver.set(new ChromeDriver());
+//
         } else if (browser.equals("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             tlDriver.set(new FirefoxDriver());

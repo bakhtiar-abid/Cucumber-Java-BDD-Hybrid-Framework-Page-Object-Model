@@ -11,11 +11,13 @@ public class LoginPage {
 
     private WebDriver driver;
     //1. By locators
-    private By emailId = By.id("email");
-    private By passwordByUser = By.id("pass");
-    private By signInButton = By.id("send2");
+    private By emailId = By.id("Email");
+    private By passwordByUser = By.id("Password");
+    private By signInButton = By.xpath("//button[normalize-space()='Log in']");
 
-    private By forgotPwdlink = By.linkText("Forgot Your Password?");
+    private By forgotPwdlink = By.linkText("Forgot password?");
+
+    private By myAccountPage = By.xpath("//a[@class='ico-account']");
 
     //2. Constructor of the page class
     public  LoginPage(WebDriver driver){
@@ -23,7 +25,9 @@ public class LoginPage {
     }
 
     public  void  goToLoginPage(){
-        driver.get("https://magento.softwaretestingboard.com/customer/account/login");
+//        driver.get("https://localhost:44369/login");
+
+        driver.navigate().to("https://localhost:44369/login");
     }
 
     //3. Page actions: features(behavior) of the page the form of methods:
@@ -49,5 +53,9 @@ public class LoginPage {
 
     public void clickOnLogin(){
         driver.findElement(signInButton).click();
+    }
+
+    public void clickOnAccountPage(){
+        driver.findElement(myAccountPage).click();
     }
 }

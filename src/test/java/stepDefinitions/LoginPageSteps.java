@@ -63,6 +63,12 @@ public class LoginPageSteps {
 //        throw new io.cucumber.java.PendingException();
     }
 
+    @When("user click on my account page")
+    public void user_click_on_my_account_page() {
+        // Write code here that turns the phrase above into concrete actions
+        loginPage.clickOnAccountPage();
+    }
+
     @Then("user gets the title of the account page")
     public void user_gets_the_title_of_the_account_page() {
         // Write code here that turns the phrase above into concrete actions
