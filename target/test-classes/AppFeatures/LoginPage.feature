@@ -2,7 +2,7 @@ Feature: Login page feature
 
   Scenario: Login page title
     Given user is on login page
-    When user gets the title of the home page
+    When user gets the title of the page
     Then page title should be "Customer Login"
 
   Scenario: Forgot Password link
@@ -14,5 +14,5 @@ Feature: Login page feature
     When user enters username "latexaid@gmail.com"
     And user enters password "User@123"
     And user clicks on Login button
-    Then user gets the title of the page
-    And page title should be written as "My Account"
+    When user gets the title of the page
+    And page title should be "My Account"
