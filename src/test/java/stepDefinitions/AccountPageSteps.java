@@ -14,7 +14,7 @@ import java.util.Map;
 public class AccountPageSteps {
 
     private LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
-    private AccountsPage accountsPage;
+    private AccountsPage accountsPage = new AccountsPage(DriverFactory.getDriver());
     @Given("user has already logged in to application")
     public void user_has_already_logged_in_to_application(DataTable credTable) {
       List<Map<String, String>> credList = credTable.asMaps();
@@ -24,7 +24,7 @@ public class AccountPageSteps {
 
 
 
-        accountsPage = loginPage.doLogin(userName,password);
+        loginPage.doLogin(userName,password);
     }
 
     @Given("user is on Accounts page")
