@@ -58,4 +58,13 @@ public class LoginPage {
     public void clickOnAccountPage(){
         driver.findElement(myAccountPage).click();
     }
+
+    public AccountsPage doLogin(String un, String pwd){
+        DriverFactory.getDriver().get("https://localhost:44369/login");
+        System.out.println("Login with: "+ un + " and "+ pwd);
+        driver.findElement(emailId).sendKeys(un);
+        driver.findElement(passwordByUser).sendKeys(pwd);
+        driver.findElement(signInButton).click();
+        return new AccountsPage(driver);
+    }
 }

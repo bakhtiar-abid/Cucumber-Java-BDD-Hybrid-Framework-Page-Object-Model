@@ -3,8 +3,14 @@ package com.qa.factory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class DriverFactory {
@@ -16,14 +22,39 @@ public class DriverFactory {
 
     /**
      * This method is used to initialize the threadlocal driver on the basis of given browser
+     *
      * @param browser
      * @return
      */
-    public WebDriver init_driver(String browser){
-        System.out.println("browser value is: "+ browser);
+    public WebDriver init_driver(String browser) {
+        System.out.println("browser value is: " + browser);
 
-        if(browser.equals("chrome")){
+        if (browser.equals("chrome")) {
+
+//            ChromeOptions options = driver.ChromeOptions();
+//            options.addArguments("ignore-certificate-errors");
             WebDriverManager.chromedriver().setup();
+//            ChromeOptions options = new ChromeOptions();
+//            options.addArguments("ignore-certificate-errors");
+//            options.addArguments("chrome.switches", "-disable-extensions");
+//            options.addArguments("--start-maximized");
+//            options.addArguments("--disable-web-security");
+//            options.addArguments("--disable-notifications");
+//            options.addArguments("--no-proxy-server");
+//            options.addArguments("--remote-allow-origins=*");
+//            options.addArguments("--allowed-ips");
+//            options.addArguments("--ignore-ssl-errors=yes");
+//            options.addArguments("--ignore-certificate-errors");
+//            options.addArguments("--allow-insecure-localhost");
+//
+//            Map<String, Object> prefs = new HashMap<>();
+//            prefs.put("credentials_enable_service", false);
+//            prefs.put("profile.password_manager_enabled", false);
+//            options.setExperimentalOption("prefs", prefs);
+//            options.setExperimentalOption("excludeSwitches", List.of(
+//                    "enable-automation"));
+//            options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+//            driver = new ChromeDriver(options);
             tlDriver.set(new ChromeDriver());
 //
         } else if (browser.equals("firefox")) {
@@ -32,7 +63,7 @@ public class DriverFactory {
         } else if (browser.equals("edge")) {
             WebDriverManager.edgedriver().setup();
             tlDriver.set(new EdgeDriver());
-        }else {
+        } else {
             System.out.println("Please pass the correct browser value");
         }
 
@@ -43,10 +74,11 @@ public class DriverFactory {
 
     /**
      * This is used to get the driver with ThreadLocal
+     *
      * @return
      */
-    public static synchronized WebDriver getDriver(){
-      return tlDriver.get();
+    public static synchronized WebDriver getDriver() {
+        return tlDriver.get();
     }
 
 }

@@ -33,11 +33,6 @@ public class ApplicationHooks {
         driver = driverFactory.init_driver(browserName);
     }
 
-    @After(order = 0)
-    public void quitBrowser(){
-        driver.quit();
-    }
-
     @After(order = 1)
     public void tearDown(Scenario scenario){
         if(scenario.isFailed()){
@@ -48,4 +43,10 @@ public class ApplicationHooks {
           scenario.attach(sourcePath, "image/png", screenshotName);
         }
     }
+
+    @After(order = 0)
+    public void quitBrowser(){
+        driver.quit();
+    }
+
 }
