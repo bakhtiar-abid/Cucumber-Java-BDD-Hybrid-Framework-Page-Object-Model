@@ -33,6 +33,11 @@ public class LoginPage {
     }
 
 
+
+
+
+    //3. Page actions: features(behavior) of the page the form of methods:
+
     public void goToHomePage(){
         driver.navigate().to("https://localhost:44369/");
     }
@@ -46,11 +51,6 @@ public class LoginPage {
 
         driver.navigate().to("https://localhost:44369/login");
     }
-
-
-
-    //3. Page actions: features(behavior) of the page the form of methods:
-
     public String getLoginPageTitle(){
      return  driver.getTitle();
     }

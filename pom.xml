@@ -59,13 +59,6 @@
         </dependency>
 
         <dependency>
-            <groupId>tech.grasshopper</groupId>
-            <artifactId>extentreports-cucumber6-adapter</artifactId>
-            <version>2.16.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.7.0</version>
@@ -94,10 +87,25 @@
         </dependency>
 
         <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>1.13.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.0.9</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>2.0.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -114,18 +122,81 @@
                     <target>9</target>
                 </configuration>
             </plugin>
+            <!--  From Video      -->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>${maven.surefire.version}</version>-->
+<!--                <configuration>-->
+<!--                    <includes>-->
+<!--                        <include>**/ParallelRun.java</include>-->
+<!--                    </includes>-->
+<!--                    <parallel>methods</parallel>-->
+<!--                    <threadCount>4</threadCount>-->
+<!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+         <!--  From video-->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
                 <configuration>
-                    <includes>
-                        <include>**/ParallelRun.java</include>
-                    </includes>
                     <parallel>methods</parallel>
-                    <threadCount>4</threadCount>
-                    <useUnlimitedThreads>false</useUnlimitedThreads>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+
+<!--                    <systemPropertyVariables>-->
+<!--                        <extent.reporter.spark.start>true</extent.reporter.spark.start>-->
+<!--                        <extent.reporter.spark.out>test-output/SparkReport/Spark.html</extent.reporter.spark.out>-->
+<!--                    </systemPropertyVariables>-->
                 </configuration>
+            </plugin>
+
+<!--            <plugin> <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-failsafe-plugin</artifactId>-->
+<!--                <version>3.0.0-M3</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>integration-test</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <includes>-->
+<!--                                <include>**/MyTestRunner.java</include>-->
+
+<!--                            </includes>-->
+<!--                            <parallel>methods</parallel>-->
+<!--                            <threadCount>10</threadCount>-->
+<!--                            <perCoreThreadCount>true</perCoreThreadCount>-->
+
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/MyTestRunner.java</include>
+
+                            </includes>
+                            <parallel>classesAndMethods</parallel>
+                            <useUnlimitedThreads>true</useUnlimitedThreads>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-failsafe-plugin</artifactId>

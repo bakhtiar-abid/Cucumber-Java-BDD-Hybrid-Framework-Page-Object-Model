@@ -6,12 +6,12 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/AppFeatures/LoginPage.feature"},
+        features = {"src/test/resources/AppFeatures"},
         glue = {"stepDefinitions", "appHooks"},
         plugin = {"pretty",
-//                "html:test-output/cucumber-report/nopCommerce-pretty.html",
-//                "json:test-output/cucumber-report/nopCommerce.json",
-//                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+                "html:test-output/cucumber-report/nopCommerce-pretty.html",
+                "json:test-output/cucumber-report/nopCommerce.json",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
 
 
         }
