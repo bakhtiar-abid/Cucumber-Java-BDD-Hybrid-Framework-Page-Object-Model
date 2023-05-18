@@ -9,6 +9,7 @@ public class RegistrationPage {
 
     private By navigateToRegPage =By.xpath("//a[normalize-space()='Register']");
 
+    private By firstName = By.id("FirstName");
     private By lastName = By.id("LastName");
 
     private By email = By.id("Email");
@@ -25,9 +26,13 @@ public class RegistrationPage {
 
     private By fieldValidation = By.xpath("//span[@class='field-validation-error']");
 
+    private By passWordError = By.id("Password-error");
 
+    private By confirmPassWordError = By.id("ConfirmPassword-error");
 
+    private By existError = By.xpath("//li[normalize-space()='The specified email already exists']");
 
+    private By successMessage = By.xpath("//div[@class='result']");
 
 
 
@@ -52,6 +57,9 @@ public class RegistrationPage {
     }
 
 
+    public  void setFirstName(String fstName){
+       driver.findElement(firstName).sendKeys(fstName);
+    }
     public void setLastName(String lsName){
        driver.findElement(lastName).sendKeys(lsName);
     }
@@ -82,5 +90,21 @@ public class RegistrationPage {
 
     public String errorValidation(){
        return driver.findElement(fieldValidation).getText();
+    }
+
+    public String setPasswordError(){
+        return driver.findElement(passWordError).getText();
+    }
+
+    public String setConfirmPassError(){
+        return driver.findElement(confirmPassWordError).getText();
+    }
+
+    public String setExistUserError(){
+        return driver.findElement(existError).getText();
+    }
+
+    public String setSuccessMessage(){
+        return driver.findElement(successMessage).getText();
     }
 }

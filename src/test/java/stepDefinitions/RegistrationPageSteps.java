@@ -23,6 +23,11 @@ public class RegistrationPageSteps {
         registrationPage.navigateToRegistrationPage();
     }
 
+    @Then("user enters first name as {string}")
+    public void user_enters_first_name_as(String firstName) {
+    registrationPage.setFirstName(firstName);
+    }
+
     @Then("user enters last name {string}")
     public void user_enters_last_name(String lastName) {
         registrationPage.setLastName(lastName);
@@ -35,40 +40,72 @@ public class RegistrationPageSteps {
 
     @Then("user enters phone number {string}")
     public void user_enters_phone_number(String phoneNumber) throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         registrationPage.setPhoneNumber(phoneNumber);
     }
 
     @Then("user enters fax number {string}")
     public void user_enters_fax_number(String faxNum) throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         registrationPage.setFaxNumber(faxNum);
     }
 
     @Then("user enters password for registration page {string}")
     public void user_enters_password_for_registration_page(String psswrd) throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         registrationPage.setPassWord(psswrd);
     }
 
     @Then("user enters confirm password for registration page {string}")
     public void user_enters_confirm_password_for_registration_page(String cnfrmPass) throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         registrationPage.setConfirmPassWord(cnfrmPass);
     }
 
     @Then("user click on registration button")
     public void user_click_on_registration_button() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         registrationPage.setButtonClick();
     }
 
+
     @Then("user see error message {string}")
-    public void user_see_error_message(String expectedErrorMsg) throws InterruptedException {
-        Thread.sleep(3000);
+    public void user_see_error_message(String exptdError) {
         errorMessage = registrationPage.errorValidation();
-        Assert.assertTrue(errorMessage.contains(expectedErrorMsg));
+        Assert.assertTrue(errorMessage.contains(exptdError));
     }
+
+    @Then("user see mismatch error message {string}")
+    public void user_see_mismatch_error_message(String exptdError) {
+        errorMessage = registrationPage.errorValidation().replace("\n","");
+        Assert.assertTrue(errorMessage.contains(exptdError));
+    }
+    @Then("user see password error message {string}")
+    public void user_see_password_error_message(String exptdPassErrMsg) {
+        errorMessage = registrationPage.setPasswordError();
+        Assert.assertTrue(errorMessage.contains(exptdPassErrMsg));
+    }
+
+    @Then("user see confirm password error message {string}")
+    public void user_see_confirm_password_error_message(String exptdConfPassErr) {
+        errorMessage = registrationPage.setConfirmPassError();
+        Assert.assertTrue(errorMessage.contains(exptdConfPassErr));
+    }
+
+
+    @Then("user should see existing error message {string}")
+    public void user_should_see_existing_error_message(String exptdExistError) {
+        errorMessage = registrationPage.setExistUserError();
+        Assert.assertTrue(errorMessage.contains(exptdExistError));
+    }
+
+    @Then("user should see success message as {string}")
+    public void user_should_see_success_message_as(String successMessage) {
+        errorMessage = registrationPage.setSuccessMessage();
+        Assert.assertTrue(errorMessage.contains(successMessage));
+    }
+
+
 
 
 
