@@ -13,8 +13,6 @@ Feature: Login page feature
       And user clicks on Login button
       Then user should see error message "Login was unsuccessful. Please correct the errors and try again.The credentials provided are incorrect"
 
-
-
   Scenario: Login with incorrect credentials
     Given user is on login page
     When user enters username "noname@gmail.com"
